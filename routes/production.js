@@ -4,7 +4,8 @@ const router = express.Router();
 const { Production } = require('../models');
 const { authenticate, authorize } = require('../middleware/auth');
 
-// Memasukkan data produksi
+
+//pembatasan hak akses hanya 'pegawai' yang memiliki token sebagai user pegawai yang bisa input data produksi
 router.post('/input', authenticate, authorize(['pegawai']), async (req, res, next) => {
     try {
         const { totalproduk, type, date, stokproduk } = req.body;
